@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galactic Nav UI</title>
+
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Inter', sans-serif;
+      color: #f2f2f2;
+      background: radial-gradient(ellipse at top left, #1b1c2e, #0f0f1a);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(5, 5, 45, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      z-index: 1000;
+      transition: background 0.3s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(10, 10, 80, 0.95);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+    }
+
+    .logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #00ffe7;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo i {
+      margin-right: 10px;
+      color: #ff8ae2;
+    }
+
+    ul.nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 2px;
+      background: #00ffe7;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: rgba(10, 10, 40, 0.95);
+        display: none;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 1.5rem 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px 10vw 40px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h2 {
+      font-size: 3rem;
+      color: #00ffe7;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(0, 255, 231, 0.4);
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      max-width: 700px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="logo"><i class="fas fa-rocket"></i>CosmoNav</div>
+    <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#explore">Explore</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <h2>Welcome to the Future</h2>
+    <p>Step into the world of futuristic web design where creativity meets cosmic precision. CosmoNav guides users across the galaxy of your digital content.</p>
+  </section>
+
+  <section id="about">
+    <h2>Who We Are</h2>
+    <p>We're an interstellar team of coders, designers, and dreamers building immersive, responsive, and engaging web experiences that feel out of this world.</p>
+  </section>
+
+  <section id="explore">
+    <h2>Explore the System</h2>
+    <p>Our services orbit around design, development, and deployment. Get ready to launch your digital product into the cosmos with smooth UI/UX and blazing-fast performance.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Connect With Us</h2>
+    <p>Reach us at <strong>contact@cosmonav.space</strong> or hail us on your frequency. Join our star network and shine across the digital universe.</p>
+  </section>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+  </script>
+
+</body>
+</html>
